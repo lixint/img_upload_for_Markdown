@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# @Date    : 2018-12-15 18:12:04
+# @Author  : lixint (lixint8@gmail.com)
+# @Link    : https://github.com/lixint/
+
+
+import os
+import argparse
+from uploadparser import UploadImg
+
+def get_artical_path(art_tittle):
+	'''
+	合成文章路径
+	'''
+	try:
+		dir_path = os.getcwd()
+		#如果是在博客根目录放置脚本，请修改testdir\_posts路径为source\_posts或其他放置文章的目录。
+		article_path = os.path.join(dir_path,r"source\_posts",art_tittle)
+		return article_path
+	except BaseException as err:
+		print("error in get_artical_path\n{}".format(err))
+
+if __name__ == '__main__':
+	
+	parser = argparse.ArgumentParser()
+	subparsers = parser.add_subparsers(help="commands", dest="command")
+
+	smms_parser = subparsers.add_parser("smms",help="use smms")
+	smms_parser.add_argument("art_tittle",help="input filename")
+
+	tx_parser = subparsers.add_parser("tx",help="use tx cos")
+	tx_parser.add_argument("art_tittle",help="input filename")
+
+	local_parser = subparsers.add_parser("local",help="use local")
+	local_parser.add_argument("art_tittle",help="input filename")
+
+	local_parser = subparsers.add_parser("clearline",help="use local")
+	local_parser.add_argument("art_tittle",help="input filename")
+
+	args = parser.parse_args()
+	
+if args.command == "smms":
+	article_path = get_artical_path(args.art_tittle)
+	smms = UploadImg(article_path)
+	data = smms.chaneg_img_path("smms")
+	smms.md_write(data)
+
+
+if args.command == "tx":
+	article_path = get_artical_path(args.art_tittle)
+	tx = UploadImg(article_path)
+	data = tx.chaneg_img_path("tx")
+	tx.md_write(data)
+
+if args.command == "clearline":
+	article_path = get_artical_path(args.art_tittle)
+	clearline = UploadImg(article_path)
+	data = clearline.clearblankline(clearline.file_content)
+	clearline.md_write(data)
+
+
+
+if args.command == "local":
+	article_path = get_artical_path(args.art_tittle)
+	change_pic_path(article_path,'local')
