@@ -39,7 +39,6 @@ python imgupload tx/smms/clearline <filename.md>
 
 ### 使用示例
 
-!(示例)[https://i.loli.net/2018/12/15/5c14e4dc68061.gif]
+![](https://i.loli.net/2018/12/15/5c14e4dc68061.gif)
 
 
-  
