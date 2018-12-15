@@ -39,9 +39,7 @@ python imgupload tx/smms/clearline <filename.md>
 
 ### 使用示例
 
-```
-<img src="https://i.loli.net/2018/12/15/5c14e4dc68061.gif" alt="picupload.gif" title="picupload.gif" />
-```
+!(示例)[https://i.loli.net/2018/12/15/5c14e4dc68061.gif]
 
 
   
