@@ -43,14 +43,14 @@ if __name__ == '__main__':
 if args.command == "smms":
 	article_path = get_artical_path(args.art_tittle)
 	smms = UploadImg(article_path)
-	data = smms.chaneg_img_path("smms")
+	data = smms.change_img_path("smms")
 	smms.md_write(data)
 
 
 if args.command == "tx":
 	article_path = get_artical_path(args.art_tittle)
 	tx = UploadImg(article_path)
-	data = tx.chaneg_img_path("tx")
+	data = tx.change_img_path("tx")
 	tx.md_write(data)
 
 if args.command == "clearline":
