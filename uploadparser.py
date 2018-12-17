@@ -21,6 +21,7 @@ class UploadImg(object):
 	'''md文件图片上传'''
 	__is_exist = os.path.exists
 	def __init__(self,filename):
+		logging.basicConfig(level=logging.INFO)
 		self.__filename = filename #传入为文章文件完整路径
 		with open(filename,"r",encoding="utf-8") as md:
 			self.file_content = md.read()
@@ -63,6 +64,7 @@ class UploadImg(object):
 					#charset='utf-8'
 				)
 			cloud_path = client._conf.uri(bucket=Bucket, path=key)
+			logging.info("New url is {}".format(cloud_path))
 			return cloud_path
 		except BaseException as err:
 			print("error in tx\n{}".format(err))
@@ -76,7 +78,8 @@ class UploadImg(object):
 				files={'smfile':open(img_origin_url,'rb'),'format':'json'}
 			)
 			img_new_url = json.loads(data.text)
-			cloud_path = img_new_url['data']['url'] 
+			cloud_path = img_new_url['data']['url']
+			logging.info("New url is {}".format(cloud_path))
 			return(cloud_path)
 		except BaseException as err:
 			print("error in smms\n{}".format(err))
@@ -93,6 +96,7 @@ class UploadImg(object):
 	#修改图片
 	def change_img_path(self,upload_method):
 		try:
+			
 			img_block = re.findall(r'!\[.*?\)', self.file_content)
 			article_content = self.file_content
 			if upload_method == "smms":
