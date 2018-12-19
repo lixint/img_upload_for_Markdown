@@ -7,8 +7,6 @@
 import re
 import requests
 import json
-from qcloud_cos import CosConfig
-from qcloud_cos import CosS3Client
 import sys
 import logging
 import os
@@ -16,6 +14,12 @@ import time
 import shutil
 from urllib import parse
 from configparser import ConfigParser
+try:
+	from qcloud_cos import CosConfig
+	from qcloud_cos import CosS3Client
+except:
+	print("qcloud_cos is not exist, tx service is not available")
+	pass
 
 class UploadImg(object):
 	'''md文件图片上传'''
@@ -133,6 +137,7 @@ class UploadImg(object):
 		try:
 			with open (self.__filename,'w',encoding = 'utf-8') as md:
 				md.write(article_content)
+			logging.info("Job done")
 		except BaseException as err:
 			print("error in md_write\n{}".format(err))
 
