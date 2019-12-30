@@ -1,31 +1,29 @@
 # img_upload_for_Markdown
 自动上传Markdown中的图片到SMMS图床或者腾讯云cos
 
-### 相关依赖：
+### 安装：
 
-```
-Python3
-requests
-cos-python-sdk-v5    https://github.com/tencentyun/cos-python-sdk-v5
+```shell
+1.安装Python3 和 pip
+2.pip install requests
+3.pip install -U cos-python-sdk-v5
 ```
 
 ### 使用方法：
 
-```
+下载`uploadparser.py`、`imgupload`、`UploadImg.ini`放到Markdown文档所在目录，如果使用腾讯云cos的话先填好`secret_id`、`secret_key`、`region`、`Bucket`。
+
+本来是专为Hexo博客用的，设置的默认的扫描目录为`\source\_posts\`，请自行修改`imgupload`文件中的路径。
+
+![image-20191230103144027](https://i.loli.net/2019/12/30/seRvFDcJW3yGnLT.png)
+
+以smms图床为例，在写完文章`hexo g -d`以前，输入`python imgupload smms article.md`，等待上传完成。
+
+```python
 python imgupload tx/smms/clearline <filename.md>
 ```
 
-本来是专为Hexo博客用的，所以默认的`imgupload`中设置的是寻找路径`\source\_posts\`的文件。
-
-使用腾讯云对象存储需要在`UploadImg.ini`中设置`secret_id`、`secret_key`、`region`、`Bucket`
-
-上传腾讯云对象存储默认建立一个以文件名命名的文件夹存放图片。
-
-### Hexo博客使用方法
-
-下载`uploadparser.py`、`imgupload`、`UploadImg.ini`放到博客根目录。如果使用腾讯云cos的话先填好`secret_id`、`secret_key`、`region`、`Bucket`
-
-以smms图床为例，在写完文章`hexo g -d`以前，输入`python imgupload smms article.md`，等待上传完成。
+![image-20191230104452385](https://i.loli.net/2019/12/30/qYfK3v7gRCuzh9S.png)
 
 ### 参数解释
 
@@ -36,9 +34,3 @@ python imgupload tx/smms/clearline <filename.md>
 `clearline`： 清除markdown文件中的空行
 
 `local` ：使用相对引用图片，目前不可用。
-
-### 使用示例
-
-![](https://i.loli.net/2018/12/15/5c14e4dc68061.gif)
-
-
