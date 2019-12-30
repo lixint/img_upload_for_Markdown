@@ -16,7 +16,7 @@ def get_artical_path(art_tittle):
 	try:
 		dir_path = os.getcwd()
 		#如果是在博客根目录放置脚本，请修改testdir\_posts路径为source\_posts或其他放置文章的目录。
-		article_path = os.path.join(dir_path,r"source\_posts",art_tittle)
+		article_path = os.path.join(dir_path,r"E:/study/img_upload_for_Markdown",art_tittle)
 		return article_path
 	except BaseException as err:
 		print("error in get_artical_path\n{}".format(err))
